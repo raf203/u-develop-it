@@ -1,4 +1,5 @@
-const mysql = require('mysql2');
+const db = require('./db/connection');
+
 const express = require('express');
 
 const inputCheck = require('./utils/inputCheck');
@@ -7,28 +8,12 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 
-
 // Express middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Connect to database
-const db = mysql.createConnection(
-    {
-      host: 'localhost',
-      // Your MySQL username,
-      user: 'root',
-      // Your MySQL password
-      password: 'Rafocean230321@',
-      database: 'election'
-    },
-    console.log('Connected to the election database.')
-  );
 
 
-//   db.query(`SELECT * FROM candidates`, (err, rows) => {
-//     console.log(rows);
-//   });
 
 // api for party table
 app.get('/api/parties', (req, res) => {
